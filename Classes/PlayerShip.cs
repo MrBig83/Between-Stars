@@ -8,23 +8,26 @@ namespace Between_Stars.Classes
 {
     public class PlayerShip : Ship
     {
+        
         public int FuelCapacity { get; set; }
         public double CurrentFuel { get; set; }
+        
+
         public int CargoCapacity { get; set; }
-        public int CurrentCargo { get; set; }
-        public int Price { get; set; }
+        public double CurrentCargo { get; set; }
+        //public int Price { get; set; }
 
-        public PlayerShip(string name, int tier, int fuelCapacity, double currentFuel, int cargoCapacity, int currentCargo, int price)
-        {
-            Name = name;
-            Tier = tier;
-            FuelCapacity = fuelCapacity;
-            CurrentFuel = currentFuel;
-            CargoCapacity = cargoCapacity;
-            CurrentCargo = currentCargo;
-            Price = price;
+        //public PlayerShip(string name, int tier, int fuelCapacity, double currentFuel, int cargoCapacity, int currentCargo, int price)
+        //{
+        //    Name = name;
+        //    Tier = tier;
+        //    FuelCapacity = fuelCapacity;
+        //    CurrentFuel = currentFuel;
+        //    CargoCapacity = cargoCapacity;
+        //    CurrentCargo = currentCargo;
+        //    Price = price;
 
-        }
+        //}
 
         public void Buy()
         {
@@ -39,3 +42,7 @@ namespace Between_Stars.Classes
         }
     }
 }
+//"Name": "Starter",
+//    "FuelCapacity": 5,
+//    "CurrentFuel": 5,
+//    "Tier": 1

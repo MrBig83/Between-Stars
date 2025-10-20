@@ -1,0 +1,12 @@
+
+[
+  {
+    "Name": "Starter",
+    "FuelCapacity": 5,
+    "CurrentFuel": 5,
+    "CargoCapacity": 5,
+    "CurrentCargo": 0,
+    "Tier": 1
+  }
+]
+
