@@ -8,6 +8,7 @@ namespace Between_Stars.Classes
 {
     public class Ship
     {
+        public int ShipId { get; set; }
         public string Name { get; set; }
         public int Tier { get; set; } 
 

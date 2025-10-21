@@ -6,19 +6,26 @@ using System.Threading.Tasks;
 
 namespace Between_Stars.Classes
 {
-    public abstract class CelestialBody
+    public class CelestialBody
     {
-        public string Id { get; set; }             // Unikt ID, bra för referenser i JSON
+        public int Id { get; set; }             // Unikt ID, bra för referenser i JSON
         public string Name { get; set; }           // Namn på planet, måne eller station
         public double X { get; set; }              // Koordinater för rymdkarta (kan vara AU eller nåt eget)
         public double Y { get; set; }
         public double Z { get; set; }
+        public List<InventoryEntry> Inventory { get; set; }  // Varor stationen säljer/köper
         public List<string> ConnectedBodies { get; set; } // ID:n på andra CelestialBodies som man kan resa till
 
         // Constructor
-        protected CelestialBody()
+        public CelestialBody() { }
+        public CelestialBody(int id, string name, double x, double y, double z)
         {
-            ConnectedBodies = new List<string>();
+            Id = id;
+            Name = name;
+            X = x;
+            Y = y;
+            Z = z;
+            //ConnectedBodies = new List<string>();
         }
     }
 

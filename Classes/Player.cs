@@ -8,15 +8,14 @@ namespace Between_Stars.Classes
 {
     public class Player
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public double Credits { get; set; }
         public double Reputation { get; set; }
         public PlayerShip Ship { get; set; }
-        // public List<string> OwnedStations { get; set; }
-        // public List<Commodity> Inventory { get; set; }
-        // osv...
+        public Dictionary<string, int> CurrentCargo { get; set; } = new(); // <varunamn, antal>
+        public int CurrentLocationId { get; set; }
 
-        // Constructor (valfritt)
         public Player()
         {
             Credits = 1000; // Startpengar – sätt vad du vill
@@ -24,5 +23,4 @@ namespace Between_Stars.Classes
                             // Inventory = new List<Commodity>();
         }
     }
-
 }

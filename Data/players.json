@@ -1,0 +1,13 @@
+[
+  {
+    "Id": 1,
+    "Name": "Mr.Big",
+    "Credits": 10000,
+    "Reputation": 0,
+    "Ship": 1,
+    "CurrentCargo": {
+      "Titanium": 2
+    },
+    "CurrentLocationId": 1
+  }
+]

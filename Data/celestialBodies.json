@@ -1,0 +1,59 @@
+[
+  {
+    "Id": 1,
+    "Name": "New Babbage",
+    "X": 10,
+    "Y": 10,
+    "Z": 10,
+    "Inventory": [
+      {
+        "CommodityId": 1,
+        "Stock": 15,
+        "Price": 120
+      },
+      {
+        "CommodityId": 2,
+        "Stock": 4,
+        "Price": 520
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "Name": "MIC-L1",
+    "X": 20,
+    "Y": 20,
+    "Z": 20,
+    "Inventory": [
+      {
+        "CommodityId": 1,
+        "Stock": 30,
+        "Price": 90
+      },
+      {
+        "CommodityId": 3,
+        "Stock": 7,
+        "Price": 950
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "Name": "MIC-L2",
+    "X": 30,
+    "Y": 30,
+    "Z": 30,
+    "Inventory": [
+      {
+        "CommodityId": 2,
+        "Stock": 4,
+        "Price": 520
+      },
+      {
+        "CommodityId": 3,
+        "Stock": 7,
+        "Price": 950
+      }
+    ]
+  }
+]

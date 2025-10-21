@@ -1,6 +1,7 @@
 
 [
   {
+    "ShipId": 1,
     "Name": "Starter",
     "FuelCapacity": 5,
     "CurrentFuel": 5,
