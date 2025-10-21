@@ -6,16 +6,21 @@ namespace Between_Stars.Utils
 
         public static class JsonHelper
         {
+            //public static List<Player> SavePlayers(string playerFilePath)
+            //{
+            //string json = File.ReadAllText(playerFilePath);
+            //    return JsonSerializer.Deserialize<List<Player>>(json);
+            //}
             public static List<Player> LoadPlayer(string playerFilePath)
             {
-                string json = File.ReadAllText(playerFilePath);
-                return JsonSerializer.Deserialize<List<Player>>(json);
+            string json = File.ReadAllText(playerFilePath);
+            return JsonSerializer.Deserialize<List<Player>>(json);
             }
 
-            public static List<PlayerShip> LoadShips(string filePath)
+        public static List<Ship> LoadShips(string filePath)
             {
                 string json = File.ReadAllText(filePath);
-                return JsonSerializer.Deserialize<List<PlayerShip>>(json);
+                return JsonSerializer.Deserialize<List<Ship>>(json);
             }
 
             public static List<Commodity> LoadCommodities(string commodityFilePath)
@@ -40,9 +45,6 @@ namespace Between_Stars.Utils
                 string json = JsonSerializer.Serialize(player, options);
                 File.WriteAllText(filePath, json);
             }
-    }
-
-
-        
-    }
+        }
+}
 

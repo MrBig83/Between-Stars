@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Between_Stars.Classes
 {
-    public class PlayerShip : Ship
+    public class PlayerShip0 : Ship //Dödar Player
     {
         
         public int FuelCapacity { get; set; }
@@ -17,7 +17,7 @@ namespace Between_Stars.Classes
         public double CurrentCargo { get; set; }
         //public int Price { get; set; }
 
-        //public PlayerShip(string name, int tier, int fuelCapacity, double currentFuel, int cargoCapacity, int currentCargo, int price)
+        //public Player(string name, int tier, int fuelCapacity, double currentFuel, int cargoCapacity, int currentCargo, int price)
         //{
         //    Name = name;
         //    Tier = tier;

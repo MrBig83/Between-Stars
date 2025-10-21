@@ -10,6 +10,8 @@ namespace Between_Stars.Classes
     {
         public int ShipId { get; set; }
         public string Name { get; set; }
+        public int FuelCapacity { get; set; }
+        public int CargoCapacity { get; set; }
         public int Tier { get; set; } 
 
 

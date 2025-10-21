@@ -7,6 +7,12 @@ namespace Between_Stars.Utils
 {
     public class MarketHandler
     {
+        private List<Commodity> commodities;
+        public MarketHandler(List<Commodity> commodities)
+        {
+            this.commodities = commodities;
+        }
+
         // Visa vilka varor som finns tillgängliga för köp ======= BYT UT TILL DICTIONARY ========
         public static void ShowMarket(List<Commodity> commodities)
         {
@@ -21,14 +27,14 @@ namespace Between_Stars.Utils
         public static void ShowCargo(Player player)
         {
             Console.WriteLine("Din nuvarande last:");
-            if(player.CurrentCargo.Count == 0)
+            if(player.CurrentCargo == 0)
             {
                 Console.WriteLine("Du har inget i lasten");
             }
             else
             {
                 int index = 1;
-                foreach (var item in player.CurrentCargo)
+                foreach (var item in player.Cargo)
                 {
                     Console.WriteLine($"{index++}. {item.Key} - {item.Value} st");
                 }
@@ -36,7 +42,7 @@ namespace Between_Stars.Utils
         }
 
         // Hantera köp av vara
-        public static void BuyCommodity(Player player, List<Commodity> commodities)
+        public void BuyCommodity(Player player)
         {
             ShowMarket(commodities);
             Console.Write("Välj vara att köpa (nummer): ");
@@ -57,23 +63,23 @@ namespace Between_Stars.Utils
             double totalPris = antal * selected.BasePrice;
             double totalVolym = antal * selected.Volume;
 
-            if (player.Credits >= totalPris && player.Ship.CurrentCargo + totalVolym <= player.Ship.CargoCapacity)
+            if (player.Credits >= totalPris && player.CurrentCargo + totalVolym <= player.CargoCapacity)
             {
                 player.Credits -= totalPris;
-                player.Ship.CurrentCargo += totalVolym;
+                player.CurrentCargo += totalVolym;
 
                 //Dictionary<string, int> Cargo = new Dictionary<string, int>();
                 //Cargo.Add(selected.Name, antal );
-                if(player.CurrentCargo.ContainsKey(selected.Name))
+                if(player.Cargo.ContainsKey(selected.Name))
                 {
-                    player.CurrentCargo[selected.Name] += antal;
+                    player.Cargo[selected.Name] += antal;
                 } else
                 {
-                    player.CurrentCargo[selected.Name] = antal;
+                    player.Cargo[selected.Name] = antal;
                 }
 
                     Console.WriteLine($"Du köpte {antal} {selected.Name}!");
-                Console.WriteLine($"Kvar: {player.Credits} cr, Last: {player.Ship.CurrentCargo}/{player.Ship.CargoCapacity} m³");
+                Console.WriteLine($"Kvar: {player.Credits} cr, Last: {player.CurrentCargo}/{player.CargoCapacity} m³");
                 // Här kan du lägga till i inventory om du vill spara vad spelaren har.
                 JsonHelper.SavePlayer("players.json", player);
             }
@@ -83,7 +89,7 @@ namespace Between_Stars.Utils
             }
         }
 
-        public static void SellCommodity(Player player, List<Commodity> commodities)
+        public void SellCommodity(Player player)
         {
             //ShowMarket(commodities);
             ShowCargo(player);
@@ -108,14 +114,14 @@ namespace Between_Stars.Utils
             //if (player.Credits >= totalPris && player.Ship.CurrentCargo + totalVolym <= player.Ship.CargoCapacity)
             //{
                 player.Credits += totalPris;
-                player.Ship.CurrentCargo -= totalVolym;
+                player.CurrentCargo -= totalVolym;
 
-            if (player.CurrentCargo.ContainsKey(selected.Name) && player.CurrentCargo[selected.Name] >= antal)
+            if (player.Cargo.ContainsKey(selected.Name) && player.Cargo[selected.Name] >= antal)
             {
-                player.CurrentCargo[selected.Name] -= antal;
-                if (player.CurrentCargo[selected.Name] == 0)
+                player.Cargo[selected.Name] -= antal;
+                if (player.Cargo[selected.Name] == 0)
                 {
-                    player.CurrentCargo.Remove(selected.Name);
+                    player.Cargo.Remove(selected.Name);
                 }
             }
             else
@@ -125,7 +131,7 @@ namespace Between_Stars.Utils
 
 
             Console.WriteLine($"Du Sålde {antal} {selected.Name}!");
-                Console.WriteLine($"Kvar: {player.Credits} cr, Last: {player.Ship.CurrentCargo}/{player.Ship.CargoCapacity} m³");
+                Console.WriteLine($"Kvar: {player.Credits} cr, Last: {player.CurrentCargo}/{player.CargoCapacity} m³");
                 // Här kan du lägga till i inventory om du vill spara vad spelaren har.
             //}
             //else

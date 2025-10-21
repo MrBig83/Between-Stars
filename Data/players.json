@@ -4,8 +4,15 @@
     "Name": "Mr.Big",
     "Credits": 10000,
     "Reputation": 0,
-    "Ship": 1,
-    "CurrentCargo": {
+    "ShipId": 1,
+    "Tier": 1,
+    "CargoCapacity": 5,
+    "CurrentCargo": 2,
+    "FuelCapacity": 5,
+    "CurrentFuel": 5,
+    "ShieldLevel": 1,
+    "EngineLevel": 1,
+    "Cargo": {
       "Titanium": 2
     },
     "CurrentLocationId": 1

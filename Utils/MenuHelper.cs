@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Between_Stars.Utils
 {
-    internal class MenuHelper
+    public class MenuHelper
     {
-        public static bool ShowMainMenu()//ApplicationManager applicationManager)
+
+        public static bool ShowMainMenu(Player loggedInPlayer, MarketHandler marketHandler)//ApplicationManager applicationManager)
         {
             Console.WriteLine("\n" +
                 "-- HUVUDMENY --\n");
@@ -26,7 +27,7 @@ namespace Between_Stars.Utils
             {
                 case "1":
                     Console.Clear();
-                    IngameMenu();
+                    IngameMenu(loggedInPlayer, marketHandler);
                     break;
                 case "2":
                     Console.Clear();
@@ -46,7 +47,7 @@ namespace Between_Stars.Utils
             return true;
         }
 
-        public static void IngameMenu()
+        public static void IngameMenu(Player loggedInPlayer, MarketHandler marketHandler)
         {
 
 
@@ -66,9 +67,10 @@ namespace Between_Stars.Utils
                     //IngameMenu(player);
                     break;
                 case "2":
+                    marketHandler.BuyCommodity(loggedInPlayer);
                     //Console.Clear();
                     //JsonHelper.SavePlayers("players.json", players); //Inte riktigt helt hundra här...
-                    Console.WriteLine($"Spelet är inte sparat just nu...");
+                    //Console.WriteLine($"Spelet är inte sparat just nu...");
 
                     //IngameMenu(player);
                     break;
