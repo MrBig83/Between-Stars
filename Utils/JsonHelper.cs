@@ -6,16 +6,21 @@ namespace Between_Stars.Utils
 
         public static class JsonHelper
         {
+
             //public static List<Player> SavePlayers(string playerFilePath)
             //{
             //string json = File.ReadAllText(playerFilePath);
             //    return JsonSerializer.Deserialize<List<Player>>(json);
             //}
-            public static List<Player> LoadPlayer(string playerFilePath)
+            public static List<Player> LoadPlayers()
             {
+            string playerFilePath = Path.Combine("Data", "players.json");
+            if (!File.Exists(playerFilePath))
+                return new List<Player>(); // Eller throw, om du vill ha fel
+
             string json = File.ReadAllText(playerFilePath);
-            return JsonSerializer.Deserialize<List<Player>>(json);
-            }
+            return JsonSerializer.Deserialize<List<Player>>(json); // Deserialisera till lista!
+        }
 
             public static List<Ship> LoadShips(string filePath)
             {
@@ -35,16 +40,17 @@ namespace Between_Stars.Utils
                 return JsonSerializer.Deserialize<List<CelestialBody>>(json);
             }
 
-            public static void SavePlayer(string playerFilePath, Player player) //Spara en LISTA istället för enskilld spelare
+        public static void SavePlayers(List<Player> players)
+        {
+            string playerFilePath = Path.Combine("Data", "players.json");
+            var options = new JsonSerializerOptions
             {
-                var options = new JsonSerializerOptions
-                {
-                    WriteIndented = true // gör JSON snyggt och lättläst
-                };
-                // Spara som lista om du har flera spelare, annars direkt som objekt
-                string json = JsonSerializer.Serialize(player, options);
-                File.WriteAllText(playerFilePath, json);
-            }
+                WriteIndented = true
+            };
+
+            string json = JsonSerializer.Serialize(players, options); // Serialisera hela listan!
+            File.WriteAllText(playerFilePath, json);
         }
+    }
 }
 

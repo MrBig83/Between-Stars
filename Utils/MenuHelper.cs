@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,14 +11,12 @@ namespace Between_Stars.Utils
 {
     public class MenuHelper
     {
-
-        //public static bool ShowMainMenu(Player loggedInPlayer, MarketHandler marketHandler, List<CelestialBody> celestialBodies)//ApplicationManager applicationManager)
-        public static bool ShowMainMenu(SessionData session)//ApplicationManager applicationManager)
+        public static bool ShowMainMenu(SessionData session)
         {
             Console.Clear();
             Console.WriteLine("\n" +
                 "-- HUVUDMENY --\n");
-            Console.WriteLine("1. Fortsätt"); //Välj karaktär om flera, annars kör på den som finns
+            Console.WriteLine("1. Fortsätt"); 
             Console.WriteLine("2. Skapa ny karaktär");
             Console.WriteLine("3. Visa alla karaktärer & status\n");
 
@@ -36,7 +35,6 @@ namespace Between_Stars.Utils
                     }
                     else
                     {
-                        //showSubMenu = HangarMenu(loggedInPlayer, marketHandler, celestialBodies);
                         while(showSubMenu)
                         {
                             showSubMenu = HangarMenu(session);
@@ -45,11 +43,9 @@ namespace Between_Stars.Utils
                     break;
                 case "2":
                     Console.Clear();
-                    //applicationManager.ShowAll();
                     break;
                 case "3":
                     Console.Clear();
-                    //applicationManager.ShowByStatus();
                     break;
                 case "9":
                     return false;
@@ -66,50 +62,76 @@ namespace Between_Stars.Utils
             var currentStation = session.CelestialBodies.First(s => s.Id == session.LoggedInPlayer.CurrentLocationId);
             bool showIngameMenu = true;
             
-            Console.WriteLine($"================\n" +
-                $"Du befinner dig i din hangar på " +
-                $"{currentStation.Name}");
-                Console.WriteLine("\n" +
-                "-- HangarMeny --\n");
-                Console.WriteLine("1. Kolla nyheter");
-                Console.WriteLine("2. Visa marknad");
-                Console.WriteLine("9. Avsluta");
+            //Console.WriteLine($"Du befinner dig i din hangar på " +
+            //$"{currentStation.Name}");
+            Console.WriteLine("\n" +
+            "-- HangarMeny --\n");
+            Console.WriteLine("1. Kontrollera nyheter");
+            Console.WriteLine("2. Visa Skeppstatus");
+            Console.WriteLine("3. Visa marknad");
+            Console.WriteLine("4. Handla varor");
+            Console.WriteLine("5. Sälja varor");
+            Console.WriteLine("6. Besök pubben");
+            Console.WriteLine("7. Köp marknadsanalys");
+            Console.WriteLine("9. Avsluta");
 
-                string inGameMenuChoice = Console.ReadLine();
+            string inGameMenuChoice = Console.ReadLine();
+            switch (inGameMenuChoice)
+            {
+                case "1":
+                    Console.Clear();
+                    Console.WriteLine($"Här ska AI få generera nyheter");
+                        
+                    break;
+                case "2":
+                    Console.Clear();
+                    Console.WriteLine($"Ditt skepp: {session.Ships.FirstOrDefault(s => s.ShipId == session.LoggedInPlayer.ShipId).Name}\n" +
+                        $"Nuvarande bränslenivå: {session.LoggedInPlayer.CurrentFuel}/{session.LoggedInPlayer.FuelCapacity}\n" +
+                        $"Nuvarande lastmängd: {session.LoggedInPlayer.CurrentCargo}/{session.LoggedInPlayer.CargoCapacity}\n");
+                        int index = 1;
+                        foreach (var item in session.LoggedInPlayer.Cargo)
+                        {
+                            Console.WriteLine($"{index++}. {item.Name} - {item.Amount} st ({session.Commodities.FirstOrDefault(c => c.Name == item.Name).Volume * item.Amount} m³)");
+                        }
 
-
-                switch (inGameMenuChoice)
-                {
-                    case "1":
-                        //Console.Clear();
-                        Console.WriteLine($"Här ska AI få generera nyheter");
-                        //IngameMenu(player);
-                        break;
-                    case "2":
+                    break;
+                case "3":
+                    Console.Clear();
                     Console.WriteLine($"Marknaden på {currentStation.Name}:\n");
-                    MarketHandler.ShowMarket(session.Commodities);
-                        //marketHandler.BuyCommodity(loggedInPlayer);
-                        //Console.Clear();
-                        //JsonHelper.SavePlayers("players.json", players); //Inte riktigt helt hundra här...
-                        //Console.WriteLine($"Spelet är inte sparat just nu...");
+                    MarketHandler.ShowMarket(session);
 
-                        //IngameMenu(player);
-                        break;
+                    break;
+                case "4":
+                    Console.Clear();
+                    MarketHandler.BuyCommodity(session);
 
-                    case "9":
-                        return false;
-                    default:
-                        Console.WriteLine("Vänligen ange ett korrekt menyalternativ");
-                        break;
+                    break;
+                case "5":
+                    Console.Clear();
+                    Console.WriteLine($"Marknaden på {currentStation.Name}:\n");
+                    MarketHandler.SellCommodity(session);
 
-                }
-            return true;
+                    break;
+                case "6":
+                    Console.Clear();
+                    Console.WriteLine($"Du besöker pubben...\n");
+                    break;
+                case "7":
+                    Console.Clear();
+                    Console.WriteLine($"Du köper en marknadsanalys och ser alla priser på alla stationer i sektorn\n");
+                    break;
+
+                case "9":
+                    return false;
+                default:
+                    Console.WriteLine("Vänligen ange ett korrekt menyalternativ");
+                    break;
+
+            }
+        return true;
             
         }
-        //public static bool ShowTradeMenu(SessionData session) //Denna skall visas i ShowMarket
-        //{
-        //    bool showTradeMenu = true;
-        //}
+
       
     }
 }

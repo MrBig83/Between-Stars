@@ -24,7 +24,7 @@ namespace Between_Stars.Classes
         public int EngineLevel { get; set; }
         // ...lägg till fler komponenter
 
-        public Dictionary<string, int> Cargo { get; set; } = new();
+        public List<CargoItem> Cargo { get; set; } = new();
         public int CurrentLocationId { get; set; }
     }
 }

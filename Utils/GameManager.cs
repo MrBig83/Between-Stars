@@ -9,9 +9,6 @@ namespace Between_Stars.Utils
 {
     public class GameManager
     {
-
-
-
         private SessionData session;
 
         public GameManager(SessionData session)

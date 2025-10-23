@@ -12,7 +12,8 @@ namespace Between_Stars.Classes
         public Player LoggedInPlayer { get; set; }
         public List<CelestialBody> CelestialBodies { get; set; }
         public List<Commodity> Commodities { get; set; }
-        public MarketHandler MarketHandler { get; set; }
+        public List<Ship> Ships { get; set; }
+        //public MarketHandler MarketHandler { get; set; }
         // Lägg till fler egenskaper vid behov!
         // T.ex. nuvarande station/planet, inloggad användare, kontoinställningar...
     }

@@ -10,7 +10,7 @@ namespace Between_Stars.Classes
     {
         public int CommodityId { get; set; }   // Referens till Commodity i huvudboken
         public int Stock { get; set; }         // Hur många finns tillgängligt
-        public double Price { get; set; }      // Det lokala priset på stationen (kan variera)
+        public double PriceFactor { get; set; }      // Det lokala priset på stationen (kan variera)
     }
 
 }

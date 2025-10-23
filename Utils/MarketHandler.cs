@@ -2,74 +2,66 @@
 
 using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Between_Stars.Utils
 {
     public class MarketHandler
     {
-        private List<Commodity> commodities;
-        public MarketHandler(List<Commodity> commodities)
+
+
+        //    private List<Commodity> commodities;
+        //    public MarketHandler(List<Commodity> commodities)
+        //    {
+        //        this.commodities = commodities;
+        //    }
+
+        //    // Visa vilka varor som finns tillgängliga för köp ======= BYT UT TILL DICTIONARY ========
+        public static void ShowMarket(SessionData session)
         {
-            this.commodities = commodities;
+            var currentHangar = session.CelestialBodies.FirstOrDefault(c => c.Id == session.LoggedInPlayer.CurrentLocationId);
+            for (int i = 0; i < currentHangar.Inventory.Count; i++)
+            {
+                var c = session.Commodities.FirstOrDefault(c => c.Id == currentHangar.Inventory[i].CommodityId);
+                //var c = currentHangar.Inventory[i];
+                Console.WriteLine($"{i + 1}. {c.Name} - " +
+                    $"Pris: {c.BasePrice * currentHangar.Inventory[i].PriceFactor} cr - " +
+                    $"Volym/enh: {c.Volume} m³ - " +
+                    $"I lager: {currentHangar.Inventory[i].Stock}");
+            }
         }
 
-        // Visa vilka varor som finns tillgängliga för köp ======= BYT UT TILL DICTIONARY ========
-        public static void ShowMarket(List<Commodity> commodities)
-        {
-            //bool running = true;
-            //while (running)
-            //{
-                Console.Clear();
-                Console.WriteLine("---- Marknaden ----");
-
-                for (int i = 0; i < commodities.Count; i++)
-                {
-                    var c = commodities[i];
-                    Console.WriteLine($"{i+1}. {c.Name} - Pris: {c.BasePrice} cr - Volym/enh: {c.Volume} m³");
-                }
-
-
-
-
-                //Console.WriteLine("\nAnge [0] för att gå tillbaka:");
-                //string input = Console.ReadLine();
-
-                //if (input == "0")
-                //{
-                //    running = false;
-                }
-            //}
-        //}
-
-        public static void ShowCargo(Player player)
+        public static void ShowCargo(SessionData session)
         {
             Console.WriteLine("Din nuvarande last:");
-            if(player.CurrentCargo == 0)
+            if (session.LoggedInPlayer.CurrentCargo == 0)
             {
                 Console.WriteLine("Du har inget i lasten");
             }
             else
             {
                 int index = 1;
-                foreach (var item in player.Cargo)
+                foreach (var item in session.LoggedInPlayer.Cargo)
                 {
-                    Console.WriteLine($"{index++}. {item.Key} - {item.Value} st");
+                    Console.WriteLine($"{index++}. {item.Name} - {item.Amount} st");
                 }
             }
         }
 
-        // Hantera köp av vara
-        public void BuyCommodity(Player player)
+        //    // Hantera köp av vara
+        public static void BuyCommodity(SessionData session)
         {
-            ShowMarket(commodities);
+            ShowMarket(session);
             Console.Write("Välj vara att köpa (nummer): ");
-            if (!int.TryParse(Console.ReadLine(), out int val) || val < 1 || val > commodities.Count)
+            if (!int.TryParse(Console.ReadLine(), out int val) || val < 1 || val > session.Commodities.Count)
             {
                 Console.WriteLine("Felaktigt val.");
                 return;
             }
 
-            var selected = commodities[val - 1];
+            var selected = session.Commodities[val - 1];
+            Commodity foundCommodity =  session.Commodities.FirstOrDefault(c => c.Name == selected.Name);
+
             Console.Write($"Hur många {selected.Name} vill du köpa? ");
             if (!int.TryParse(Console.ReadLine(), out int antal) || antal < 1)
             {
@@ -77,28 +69,56 @@ namespace Between_Stars.Utils
                 return;
             }
 
-            double totalPris = antal * selected.BasePrice;
-            double totalVolym = antal * selected.Volume;
+            double totalPris = antal * foundCommodity.BasePrice;
+            double totalVolym = antal * foundCommodity.Volume;
 
-            if (player.Credits >= totalPris && player.CurrentCargo + totalVolym <= player.CargoCapacity)
+            if (session.LoggedInPlayer.Credits >= totalPris && session.LoggedInPlayer.CurrentCargo + totalVolym <= session.LoggedInPlayer.CargoCapacity)
             {
-                player.Credits -= totalPris;
-                player.CurrentCargo += totalVolym;
+                session.LoggedInPlayer.Credits -= totalPris;
+                session.LoggedInPlayer.CurrentCargo += totalVolym;
 
-                //Dictionary<string, int> Cargo = new Dictionary<string, int>();
-                //Cargo.Add(selected.Name, antal );
-                if(player.Cargo.ContainsKey(selected.Name))
+
+                var item = session.LoggedInPlayer.Cargo.FirstOrDefault(c => c.Name == foundCommodity.Name);
+                if (item != null)
+                    item.Amount += antal;
+                else
+                    session.LoggedInPlayer.Cargo.Add(new CargoItem { 
+                        Name = foundCommodity.Name, 
+                        Amount = antal,
+                        Acronym = foundCommodity.Acronym,
+                        Volume = foundCommodity.Volume});
+
+                Console.WriteLine($"Du köpte {antal} {selected.Name}!");
+                Console.WriteLine($"Kvar: {session.LoggedInPlayer.Credits} cr, Last: {session.LoggedInPlayer.CurrentCargo}/{session.LoggedInPlayer.CargoCapacity} m³");
+
+
+
+
+                // Hitta och uppdatera rätt spelare
+                var players = JsonHelper.LoadPlayers();
+                var playerToUpdate = players.FirstOrDefault(p => p.Id == session.LoggedInPlayer.Id);
+                if (playerToUpdate != null)
                 {
-                    player.Cargo[selected.Name] += antal;
-                } else
+                    // Uppdatera alla properties från session.LoggedInPlayer till playerToUpdate
+                    playerToUpdate.Cargo = session.LoggedInPlayer.Cargo;
+                    playerToUpdate.Credits = session.LoggedInPlayer.Credits;
+                    // ...alla andra properties du vill spara!
+                }
+                else
                 {
-                    player.Cargo[selected.Name] = antal;
+                    // Om inte finns: lägg till!
+                    players.Add(session.LoggedInPlayer);
                 }
 
-                    Console.WriteLine($"Du köpte {antal} {selected.Name}!");
-                Console.WriteLine($"Kvar: {player.Credits} cr, Last: {player.CurrentCargo}/{player.CargoCapacity} m³");
-                // Här kan du lägga till i inventory om du vill spara vad spelaren har.
-                JsonHelper.SavePlayer("players.json", player);
+                // Spara hela listan
+                JsonHelper.SavePlayers(players);
+
+
+
+
+
+
+                //JsonHelper.SavePlayers(session.LoggedInPlayer);
             }
             else
             {
@@ -106,55 +126,83 @@ namespace Between_Stars.Utils
             }
         }
 
-        public void SellCommodity(Player player)
+        public static void SellCommodity(SessionData session)
         {
-            //ShowMarket(commodities);
-            ShowCargo(player);
-            Console.Write("Välj vara att sälja (nummer): ");
-            if (!int.TryParse(Console.ReadLine(), out int val) || val < 1 || val > commodities.Count)
+            if (session.LoggedInPlayer.Cargo.Count != 0)
             {
-                Console.WriteLine("Felaktigt val.");
-                return;
-            }
-
-            var selected = commodities[val - 1];
-            Console.Write($"Hur många {selected.Name} vill du sälja? ");
-            if (!int.TryParse(Console.ReadLine(), out int antal) || antal < 1)
-            {
-                Console.WriteLine("Felaktigt antal.");
-                return;
-            }
-
-            double totalPris = antal * selected.BasePrice;
-            double totalVolym = antal * selected.Volume;
-
-            //if (player.Credits >= totalPris && player.Ship.CurrentCargo + totalVolym <= player.Ship.CargoCapacity)
-            //{
-                player.Credits += totalPris;
-                player.CurrentCargo -= totalVolym;
-
-            if (player.Cargo.ContainsKey(selected.Name) && player.Cargo[selected.Name] >= antal)
-            {
-                player.Cargo[selected.Name] -= antal;
-                if (player.Cargo[selected.Name] == 0)
+                ShowCargo(session);
+                Console.Write("Välj vara att sälja (nummer): ");
+                if (!int.TryParse(Console.ReadLine(), out int val) || val < 1 || val > session.LoggedInPlayer.Cargo.Count)
                 {
-                    player.Cargo.Remove(selected.Name);
+                    Console.WriteLine("Felaktigt val.");
+                    return;
                 }
-            }
-            else
+
+
+                var selected = session.LoggedInPlayer.Cargo[val - 1];
+                Commodity foundCommodity = session.Commodities.FirstOrDefault(c => c.Name == selected.Name);
+
+                Console.Write($"Hur många {selected.Name} vill du sälja? ");
+                if (!int.TryParse(Console.ReadLine(), out int antal) || antal < 1)
+                {
+                    Console.WriteLine("Felaktigt antal.");
+                    return;
+                }
+
+                double totalPris = antal * foundCommodity.BasePrice;
+                double totalVolym = antal * foundCommodity.Volume;
+
+                session.LoggedInPlayer.Credits += totalPris;
+                session.LoggedInPlayer.CurrentCargo -= totalVolym;
+
+                // Hitta rätt cargo-item
+                var item = session.LoggedInPlayer.Cargo.FirstOrDefault(c => c.Name == selected.Name);
+
+                // Kontrollera att spelaren har tillräckligt många
+                if (item != null && item.Amount >= antal)
+                {
+                    item.Amount -= antal;
+                    if (item.Amount <= 0)
+                        session.LoggedInPlayer.Cargo.Remove(item);
+                }
+                else
+                {
+                    Console.WriteLine("Du har inte tillräckligt många av den varan i lasten.");
+                }
+            
+
+                Console.WriteLine($"Du Sålde {antal} {selected.Name}!");
+                Console.WriteLine($"Kvar: {session.LoggedInPlayer.Credits} cr, Last: {session.LoggedInPlayer.CurrentCargo}/{session.LoggedInPlayer.CargoCapacity} m³");
+
+
+                // Hitta och uppdatera rätt spelare
+                var players = JsonHelper.LoadPlayers();
+                var playerToUpdate = players.FirstOrDefault(p => p.Id == session.LoggedInPlayer.Id);
+                if (playerToUpdate != null)
+                {
+                    // Uppdatera alla properties från session.LoggedInPlayer till playerToUpdate
+                    playerToUpdate.Cargo = session.LoggedInPlayer.Cargo;
+                    playerToUpdate.Credits = session.LoggedInPlayer.Credits;
+                    // ...alla andra properties du vill spara!
+                }
+                else
+                {
+                    // Om inte finns: lägg till!
+                    players.Add(session.LoggedInPlayer);
+                }
+
+                // Spara hela listan
+                JsonHelper.SavePlayers(players);
+
+
+
+                //JsonHelper.SavePlayers(session.LoggedInPlayer);
+            } else
             {
-                Console.WriteLine("Du har inte tillräckligt många av denna vara för att sälja.");
+                Console.WriteLine("Du har inga varor att sälja");
             }
-
-
-            Console.WriteLine($"Du Sålde {antal} {selected.Name}!");
-                Console.WriteLine($"Kvar: {player.Credits} cr, Last: {player.CurrentCargo}/{player.CargoCapacity} m³");
-                // Här kan du lägga till i inventory om du vill spara vad spelaren har.
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Du har inte tillräckligt med pengar eller plats i lasten.");
-            //}
         }
+
+
     }
 }

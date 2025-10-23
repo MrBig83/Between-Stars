@@ -9,12 +9,12 @@
       {
         "CommodityId": 1,
         "Stock": 15,
-        "Price": 120
+        "PriceFactor": 1
       },
       {
         "CommodityId": 2,
         "Stock": 4,
-        "Price": 520
+        "PriceFactor": 20
       }
     ]
   },
@@ -28,12 +28,12 @@
       {
         "CommodityId": 1,
         "Stock": 30,
-        "Price": 90
+        "PriceFactor": 2
       },
       {
         "CommodityId": 3,
         "Stock": 7,
-        "Price": 950
+        "PriceFactor": 18
       }
     ]
   },
@@ -47,12 +47,12 @@
       {
         "CommodityId": 2,
         "Stock": 4,
-        "Price": 520
+        "PriceFactor": 1
       },
       {
         "CommodityId": 3,
         "Stock": 7,
-        "Price": 950
+        "PriceFactor": 30
       }
     ]
   }

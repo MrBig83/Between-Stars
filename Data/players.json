@@ -12,9 +12,16 @@
     "CurrentFuel": 5,
     "ShieldLevel": 1,
     "EngineLevel": 1,
-    "Cargo": {
-      "Titanium": 2
-    },
-    "CurrentLocationId": 1
+    "Cargo": [
+      {
+        "Name": "Titanium",
+        "Amount": 2,
+        "Acronym": "Tit",
+        "Volume": 1
+      }
+    ],
+      "CurrentLocationId"
+      :
+      1
   }
 ]

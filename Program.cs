@@ -2,6 +2,7 @@
 using Between_Stars.Utils;
 using System;
 using System.Numerics;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Between_Stars
 {
@@ -9,7 +10,6 @@ namespace Between_Stars
     {
         static void Main(string[] args)
         {
-            // OBS: "Data/ships.json" söker från *bin-mappen* (där .exe körs)
             string shipFilePath = Path.Combine("Data", "ships.json");
             string commodityFilePath = Path.Combine("Data", "commodities.json");
             string celestialBodyFilePath = Path.Combine("Data", "celestialBodies.json");
@@ -18,7 +18,7 @@ namespace Between_Stars
             List<Ship> ships = JsonHelper.LoadShips(shipFilePath);
             List<Commodity> commodities = JsonHelper.LoadCommodities(commodityFilePath);
             List<CelestialBody> celestialBodies = JsonHelper.LoadCelestialBodies(celestialBodyFilePath);
-            List<Player> players = JsonHelper.LoadPlayer(playerFilePath);
+            List<Player> players = JsonHelper.LoadPlayers();
 
             //LogInUser();
 
@@ -29,22 +29,17 @@ namespace Between_Stars
             
             var currentStation = celestialBodies.First(s => s.Id == loggedInPlayer.CurrentLocationId);
             Console.WriteLine($"Nuvarande position: {currentStation.Name}");
-            //ShowStationMarket(currentStation);
 
-            var commodityDict = commodities.ToDictionary(c => c.Id);
-            Console.WriteLine("Stationens inventarie:\n");
-            foreach (var entry in currentStation.Inventory)
-            {
-                if (commodityDict.TryGetValue(entry.CommodityId, out var commodity))
-                {
-                    Console.WriteLine($"{commodity.Name} – {entry.Stock} st – Pris: {entry.Price} credits");
-                }
-            }
-            Console.WriteLine("\n------- Slut på inventarie -------\n");
+            //var commodityDict = commodities.ToDictionary(c => c.Id);
+            //Console.WriteLine("Stationens inventarie:\n");
+            //foreach (var entry in currentStation.Inventory)
+            //{
+            //    if (commodityDict.TryGetValue(entry.CommodityId, out var commodity))
+            //    {
+            //        Console.WriteLine($"{commodity.Name} – {entry.Stock} st – Pris: {entry.Price} credits");
+            //    }
+            //}
 
-
-
-            // LINQ – FirstOrDefault (hämtar första matchen eller null)
             Ship playerShip = ships.FirstOrDefault(s => s.ShipId == loggedInPlayer.ShipId);
             if (playerShip != null)
             {
@@ -61,28 +56,27 @@ namespace Between_Stars
 
           
             Console.WriteLine("Nya i lasten:");
-            loggedInPlayer.Cargo.ToList().ForEach(c => Console.WriteLine($"{c.Value}st {c.Key}"));
+            loggedInPlayer.Cargo.ToList().ForEach(c => Console.WriteLine($"{c.Amount}st {c.Name}"));
 
             var sessionData = new SessionData
             {
                 LoggedInPlayer = loggedInPlayer,
                 CelestialBodies = celestialBodies,
                 Commodities = commodities,
-                MarketHandler = new MarketHandler(commodities),
+                Ships = ships,
                 // ...lägg till det du behöver
             };
-
+            //sessionData.MarketHandler = new MarketHandler(sessionData);
             bool gameRunning = true;
 
-            //GameManager gameManager = new GameManager(loggedInPlayer, commodities, celestialBodies);  // Skapa en instans
+            
             GameManager gameManager = new GameManager(sessionData);  // Skapa en instans
             while(gameRunning)
             {
                 gameRunning = gameManager.StartGame();
             }
 
-            //Visa huvudmeny
-            //MarketHandler.BuyCommodity(loggedInPlayer, commodities);
+
             
         }
     }
