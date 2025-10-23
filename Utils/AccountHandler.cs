@@ -44,7 +44,7 @@ namespace Between_Stars.Utils
                         {
                             players.Add(newPlayer);
                             // Spara nya spelaren (implementera SavePlayers i JsonHelper)
-                            JsonHelper.SavePlayers(playerFilePath);
+                            //JsonHelper.SavePlayers(playerFilePath);
                             Console.WriteLine("Konto skapat! Logga in med nya användaren.");
                         }
                         break;

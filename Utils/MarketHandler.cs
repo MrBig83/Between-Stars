@@ -16,13 +16,30 @@ namespace Between_Stars.Utils
         // Visa vilka varor som finns tillgängliga för köp ======= BYT UT TILL DICTIONARY ========
         public static void ShowMarket(List<Commodity> commodities)
         {
-            Console.WriteLine("---- Marknaden ----");
-            for (int i = 0; i < commodities.Count; i++)
-            {
-                var c = commodities[i];
-                Console.WriteLine($"{i + 1}. {c.Name} - Pris: {c.BasePrice} cr - Volym: {c.Volume} m³");
-            }
-        }
+            //bool running = true;
+            //while (running)
+            //{
+                Console.Clear();
+                Console.WriteLine("---- Marknaden ----");
+
+                for (int i = 0; i < commodities.Count; i++)
+                {
+                    var c = commodities[i];
+                    Console.WriteLine($"{i+1}. {c.Name} - Pris: {c.BasePrice} cr - Volym/enh: {c.Volume} m³");
+                }
+
+
+
+
+                //Console.WriteLine("\nAnge [0] för att gå tillbaka:");
+                //string input = Console.ReadLine();
+
+                //if (input == "0")
+                //{
+                //    running = false;
+                }
+            //}
+        //}
 
         public static void ShowCargo(Player player)
         {

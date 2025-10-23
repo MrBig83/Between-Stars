@@ -17,7 +17,7 @@ namespace Between_Stars.Utils
             return JsonSerializer.Deserialize<List<Player>>(json);
             }
 
-        public static List<Ship> LoadShips(string filePath)
+            public static List<Ship> LoadShips(string filePath)
             {
                 string json = File.ReadAllText(filePath);
                 return JsonSerializer.Deserialize<List<Ship>>(json);
@@ -35,7 +35,7 @@ namespace Between_Stars.Utils
                 return JsonSerializer.Deserialize<List<CelestialBody>>(json);
             }
 
-            public static void SavePlayer(string filePath, Player player)
+            public static void SavePlayer(string playerFilePath, Player player) //Spara en LISTA istället för enskilld spelare
             {
                 var options = new JsonSerializerOptions
                 {
@@ -43,7 +43,7 @@ namespace Between_Stars.Utils
                 };
                 // Spara som lista om du har flera spelare, annars direkt som objekt
                 string json = JsonSerializer.Serialize(player, options);
-                File.WriteAllText(filePath, json);
+                File.WriteAllText(playerFilePath, json);
             }
         }
 }

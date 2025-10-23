@@ -63,9 +63,23 @@ namespace Between_Stars
             Console.WriteLine("Nya i lasten:");
             loggedInPlayer.Cargo.ToList().ForEach(c => Console.WriteLine($"{c.Value}st {c.Key}"));
 
+            var sessionData = new SessionData
+            {
+                LoggedInPlayer = loggedInPlayer,
+                CelestialBodies = celestialBodies,
+                Commodities = commodities,
+                MarketHandler = new MarketHandler(commodities),
+                // ...lägg till det du behöver
+            };
 
-            GameManager gameManager = new GameManager(loggedInPlayer, commodities);  // Skapa en instans
-            gameManager.StartGame();
+            bool gameRunning = true;
+
+            //GameManager gameManager = new GameManager(loggedInPlayer, commodities, celestialBodies);  // Skapa en instans
+            GameManager gameManager = new GameManager(sessionData);  // Skapa en instans
+            while(gameRunning)
+            {
+                gameRunning = gameManager.StartGame();
+            }
 
             //Visa huvudmeny
             //MarketHandler.BuyCommodity(loggedInPlayer, commodities);
