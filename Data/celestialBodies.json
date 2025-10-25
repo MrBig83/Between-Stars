@@ -2,57 +2,69 @@
   {
     "Id": 1,
     "Name": "New Babbage",
-    "X": 10,
-    "Y": 10,
-    "Z": 10,
+    "Position": {
+      "X": 10,
+      "Y": 10,
+      "Z": 10
+    },
     "Inventory": [
       {
         "CommodityId": 1,
         "Stock": 15,
-        "PriceFactor": 1
+        "MaxStock": 100,
+        "PriceFactor": 1.05
       },
       {
         "CommodityId": 2,
         "Stock": 4,
-        "PriceFactor": 20
+        "MaxStock": 120,
+        "PriceFactor": 1.40
       }
     ]
   },
   {
     "Id": 2,
     "Name": "MIC-L1",
-    "X": 20,
-    "Y": 20,
-    "Z": 20,
+    "Position": {
+      "X": 20,
+      "Y": 25,
+      "Z": 18
+    },
     "Inventory": [
       {
         "CommodityId": 1,
         "Stock": 30,
-        "PriceFactor": 2
+        "MaxStock": 45,
+        "PriceFactor": 0.95
       },
       {
         "CommodityId": 3,
         "Stock": 7,
-        "PriceFactor": 18
+        "MaxStock": 20,
+        "PriceFactor": 1.20
       }
     ]
   },
   {
     "Id": 3,
     "Name": "MIC-L2",
-    "X": 30,
-    "Y": 30,
-    "Z": 30,
+    "Position": {
+      "X": 33,
+      "Y": 29,
+      "Z": 35
+    },
     "Inventory": [
       {
         "CommodityId": 2,
         "Stock": 4,
-        "PriceFactor": 1
+        "MaxStock": 20,
+        "PriceFactor": 0.85
       },
       {
         "CommodityId": 3,
         "Stock": 7,
-        "PriceFactor": 30
+        "MaxStock": 15,
+        "PriceFactor": 1.65
       }
     ]
   }

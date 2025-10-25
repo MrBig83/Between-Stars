@@ -51,6 +51,18 @@ namespace Between_Stars.Utils
             string json = JsonSerializer.Serialize(players, options); // Serialisera hela listan!
             File.WriteAllText(playerFilePath, json);
         }
+
+        public static void SaveCBs(List<CelestialBody> celestialBodies)
+        {
+            string celestialBodyFilePath = Path.Combine("Data", "celestialBodies.json");
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            string json = JsonSerializer.Serialize(celestialBodies, options); // Serialisera hela listan!
+            File.WriteAllText(celestialBodyFilePath, json);
+        }
     }
 }
 

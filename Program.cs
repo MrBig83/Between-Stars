@@ -8,7 +8,7 @@ namespace Between_Stars
 {
     internal partial class Program //: AccountHandler
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             string shipFilePath = Path.Combine("Data", "ships.json");
             string commodityFilePath = Path.Combine("Data", "commodities.json");
@@ -67,14 +67,13 @@ namespace Between_Stars
                 // ...lägg till det du behöver
             };
             //sessionData.MarketHandler = new MarketHandler(sessionData);
-            bool gameRunning = true;
-
             
+            
+
+
             GameManager gameManager = new GameManager(sessionData);  // Skapa en instans
-            while(gameRunning)
-            {
-                gameRunning = gameManager.StartGame();
-            }
+            await gameManager.StartGame();
+            
 
 
             

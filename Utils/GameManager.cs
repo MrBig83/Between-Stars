@@ -16,9 +16,12 @@ namespace Between_Stars.Utils
             this.session = session;
         }
         
-        public bool StartGame()
+        public async Task StartGame()
         {
-            return MenuHelper.ShowMainMenu(session);
+            
+
+            MarketHandler.Restock(session); // =========== Körs på timer senare (Idle restock?)
+            await MenuHelper.ShowMainMenu(session);
             // ...andra menyer och features...
         }
     }

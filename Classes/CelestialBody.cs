@@ -10,22 +10,25 @@ namespace Between_Stars.Classes
     {
         public int Id { get; set; }             // Unikt ID, bra för referenser i JSON
         public string Name { get; set; }           // Namn på planet, måne eller station
-        public double X { get; set; }              // Koordinater för rymdkarta (kan vara AU eller nåt eget)
-        public double Y { get; set; }
-        public double Z { get; set; }
+        public Position Position { get; set; }              // Koordinater för rymdkarta (kan vara AU eller nåt eget)
         public List<InventoryEntry> Inventory { get; set; }  // Varor stationen säljer/köper
         public List<string> ConnectedBodies { get; set; } // ID:n på andra CelestialBodies som man kan resa till
 
         // Constructor
-        public CelestialBody() { }
-        public CelestialBody(int id, string name, double x, double y, double z)
+        // Tom konstruktor för deserialisering
+        public CelestialBody()
+        {
+            Inventory = new List<InventoryEntry>();
+            ConnectedBodies = new List<string>();
+        }
+        public CelestialBody(int id, string name, int x, int y, int z,
+            List<InventoryEntry> inventory = null, List<string> connectedBodies = null)
         {
             Id = id;
             Name = name;
-            X = x;
-            Y = y;
-            Z = z;
-            //ConnectedBodies = new List<string>();
+            Position = new Position { X = x, Y = y, Z = z };
+            Inventory = inventory ?? new List<InventoryEntry>();
+            ConnectedBodies = connectedBodies ?? new List<string>();
         }
     }
 
