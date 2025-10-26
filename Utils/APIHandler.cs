@@ -61,7 +61,7 @@ namespace Between_Stars.Utils
             - ""Description"": (tydlig och inspirerande beskrivning på svenska)
             - ""Commodity"": (exakt namn slumpmässigt valt från listan: Titanium, Water, Food, Medical Supplies, Quantum Fuel, Ore, Textiles, Machinery, Electronics, Luxury Goods)            
             - ""Amount"": (slumpmässigt heltal antal enheter av varan (1-{session.LoggedInPlayer.CargoCapacity}))
-            - ""From_station"": (exakt namn slumpmässigt från listan: New Babbage, MIC-L1, MIC-L2, Lorville Hub, Everus Harbor, Orison Platform, ArcCorp Tradeport)
+            - ""From_station"": (exakt namn slumpmässigt från listan: New Babbage, MIC-L1, MIC-L2, Port Olisar, Grim Hex, ArcCorp, Everus Harbor, Lorville, Orison, Refinery Station R&R-001)
             - ""To_station"": (exakt namn slumpmässigt från listan, annan än from_station)
             - ""Reward_cr"": (slumpmässigt heltal mellan 500-2500)
             - ""Reward_reputation"": (slumpmässigt heltal mellan 1–5)

@@ -2,70 +2,254 @@
   {
     "Id": 1,
     "Name": "New Babbage",
-    "Position": {
-      "X": 10,
-      "Y": 10,
-      "Z": 10
-    },
+    "SecurityLevel": "High",
+    "Position": { "X": 10, "Y": 10, "Z": 10 },
     "Inventory": [
-      {
-        "CommodityId": 1,
-        "Stock": 15,
-        "MaxStock": 100,
-        "PriceFactor": 1.05
-      },
-      {
-        "CommodityId": 2,
-        "Stock": 4,
-        "MaxStock": 120,
-        "PriceFactor": 1.40
-      }
-    ]
+      { "CommodityId": 1, "Stock": 18, "MaxStock": 100, "PriceFactor": 1.05 },
+      { "CommodityId": 2, "Stock": 7, "MaxStock": 120, "PriceFactor": 1.4 },
+      { "CommodityId": 10, "Stock": 4, "MaxStock": 25, "PriceFactor": 0.9 }
+    ],
+    "ConnectedBodies": [2, 3]
   },
   {
     "Id": 2,
     "Name": "MIC-L1",
-    "Position": {
-      "X": 20,
-      "Y": 25,
-      "Z": 18
-    },
+    "SecurityLevel": "High",
+    "Position": { "X": 20, "Y": 25, "Z": 18 },
     "Inventory": [
-      {
-        "CommodityId": 1,
-        "Stock": 30,
-        "MaxStock": 45,
-        "PriceFactor": 0.95
-      },
-      {
-        "CommodityId": 3,
-        "Stock": 7,
-        "MaxStock": 20,
-        "PriceFactor": 1.20
-      }
-    ]
+      { "CommodityId": 1, "Stock": 33, "MaxStock": 45, "PriceFactor": 0.95 },
+      { "CommodityId": 3, "Stock": 10, "MaxStock": 20, "PriceFactor": 1.2 },
+      { "CommodityId": 9, "Stock": 12, "MaxStock": 50, "PriceFactor": 1.1 }
+    ],
+    "ConnectedBodies": [1, 3, 4]
   },
   {
     "Id": 3,
     "Name": "MIC-L2",
-    "Position": {
-      "X": 33,
-      "Y": 29,
-      "Z": 35
-    },
+    "SecurityLevel": "High",
+    "Position": { "X": 33, "Y": 29, "Z": 35 },
     "Inventory": [
-      {
-        "CommodityId": 2,
-        "Stock": 4,
-        "MaxStock": 20,
-        "PriceFactor": 0.85
-      },
-      {
-        "CommodityId": 3,
-        "Stock": 7,
-        "MaxStock": 15,
-        "PriceFactor": 1.65
-      }
-    ]
+      { "CommodityId": 2, "Stock": 7, "MaxStock": 20, "PriceFactor": 0.85 },
+      { "CommodityId": 3, "Stock": 10, "MaxStock": 15, "PriceFactor": 1.65 },
+      { "CommodityId": 6, "Stock": 25, "MaxStock": 100, "PriceFactor": 1.1 }
+    ],
+    "ConnectedBodies": [1, 2, 4]
+  },
+  {
+    "Id": 4,
+    "Name": "Port Olisar",
+    "SecurityLevel": "Medium",
+    "Position": { "X": 15, "Y": 40, "Z": 22 },
+    "Inventory": [
+      { "CommodityId": 5, "Stock": 30, "MaxStock": 80, "PriceFactor": 0.9 },
+      { "CommodityId": 3, "Stock": 40, "MaxStock": 120, "PriceFactor": 0.95 },
+      { "CommodityId": 8, "Stock": 10, "MaxStock": 30, "PriceFactor": 1.4 },
+      { "CommodityId": 10, "Stock": 3, "MaxStock": 10, "PriceFactor": 1.2 }
+    ],
+    "ConnectedBodies": [2, 3, 5]
+  },
+  {
+    "Id": 5,
+    "Name": "Grim Hex",
+    "SecurityLevel": "Medium",
+    "Position": { "X": 48, "Y": 15, "Z": 5 },
+    "Inventory": [
+      { "CommodityId": 7, "Stock": 55, "MaxStock": 100, "PriceFactor": 0.8 },
+      { "CommodityId": 9, "Stock": 20, "MaxStock": 60, "PriceFactor": 1.3 },
+      { "CommodityId": 6, "Stock": 10, "MaxStock": 40, "PriceFactor": 0.9 },
+      { "CommodityId": 10, "Stock": 2, "MaxStock": 8, "PriceFactor": 1.5 }
+    ],
+    "ConnectedBodies": [4, 6, 7]
+  },
+  {
+    "Id": 6,
+    "Name": "ArcCorp",
+    "SecurityLevel": "High",
+    "Position": { "X": 60, "Y": 60, "Z": 20 },
+    "Inventory": [
+      { "CommodityId": 8, "Stock": 25, "MaxStock": 70, "PriceFactor": 0.85 },
+      { "CommodityId": 9, "Stock": 35, "MaxStock": 90, "PriceFactor": 0.95 },
+      { "CommodityId": 7, "Stock": 50, "MaxStock": 150, "PriceFactor": 1.1 },
+      { "CommodityId": 1, "Stock": 15, "MaxStock": 40, "PriceFactor": 1.2 }
+    ],
+    "ConnectedBodies": [5, 7, 8]
+  },
+  {
+    "Id": 7,
+    "Name": "Everus Harbor",
+    "SecurityLevel": "High",
+    "Position": { "X": 80, "Y": 45, "Z": 33 },
+    "Inventory": [
+      { "CommodityId": 5, "Stock": 50, "MaxStock": 100, "PriceFactor": 1.0 },
+      { "CommodityId": 4, "Stock": 20, "MaxStock": 50, "PriceFactor": 1.25 },
+      { "CommodityId": 2, "Stock": 60, "MaxStock": 200, "PriceFactor": 0.75 }
+    ],
+    "ConnectedBodies": [5, 6, 8]
+  },
+  {
+    "Id": 8,
+    "Name": "Lorville",
+    "SecurityLevel": "High",
+    "Position": { "X": 95, "Y": 80, "Z": 10 },
+    "Inventory": [
+      { "CommodityId": 6, "Stock": 70, "MaxStock": 150, "PriceFactor": 0.9 },
+      { "CommodityId": 8, "Stock": 25, "MaxStock": 100, "PriceFactor": 1.3 },
+      { "CommodityId": 4, "Stock": 10, "MaxStock": 50, "PriceFactor": 1.5 },
+      { "CommodityId": 2, "Stock": 80, "MaxStock": 200, "PriceFactor": 0.8 }
+    ],
+    "ConnectedBodies": [6, 7, 9, 10]
+  },
+  {
+    "Id": 9,
+    "Name": "Orison",
+    "SecurityLevel": "Medium",
+    "Position": { "X": 30, "Y": 90, "Z": 70 },
+    "Inventory": [
+      { "CommodityId": 3, "Stock": 120, "MaxStock": 300, "PriceFactor": 0.7 },
+      { "CommodityId": 4, "Stock": 25, "MaxStock": 70, "PriceFactor": 1.1 },
+      { "CommodityId": 10, "Stock": 8, "MaxStock": 30, "PriceFactor": 1.4 },
+      { "CommodityId": 2, "Stock": 50, "MaxStock": 150, "PriceFactor": 0.9 },
+      { "CommodityId": 7, "Stock": 35, "MaxStock": 80, "PriceFactor": 1.0 }
+    ],
+    "ConnectedBodies": [8, 10]
+  },
+  {
+    "Id": 10,
+    "Name": "Refinery Station R&R-001",
+    "SecurityLevel": "Medium",
+    "Position": { "X": 120, "Y": 100, "Z": 50 },
+    "Inventory": [
+      { "CommodityId": 1, "Stock": 60, "MaxStock": 200, "PriceFactor": 0.7 },
+      { "CommodityId": 6, "Stock": 150, "MaxStock": 250, "PriceFactor": 0.8 },
+      { "CommodityId": 5, "Stock": 30, "MaxStock": 100, "PriceFactor": 1.1 },
+      { "CommodityId": 8, "Stock": 10, "MaxStock": 40, "PriceFactor": 1.25 },
+      { "CommodityId": 9, "Stock": 15, "MaxStock": 60, "PriceFactor": 1.2 }
+    ],
+    "ConnectedBodies": [8, 9, 11]
+  },
+  {
+    "Id": 11,
+    "Name": "Humboldt Mines",
+    "SecurityLevel": "Medium",
+    "Position": { "X": 135, "Y": 115, "Z": 40 },
+    "Inventory": [
+      { "CommodityId": 6, "Stock": 200, "MaxStock": 400, "PriceFactor": 0.65 },
+      { "CommodityId": 1, "Stock": 50, "MaxStock": 150, "PriceFactor": 0.8 },
+      { "CommodityId": 8, "Stock": 15, "MaxStock": 40, "PriceFactor": 1.3 }
+    ],
+    "ConnectedBodies": [10, 12, 13]
+  },
+  {
+    "Id": 12,
+    "Name": "Covalex Hub",
+    "SecurityLevel": "Medium",
+    "Position": { "X": 140, "Y": 60, "Z": 85 },
+    "Inventory": [
+      { "CommodityId": 3, "Stock": 60, "MaxStock": 120, "PriceFactor": 0.9 },
+      { "CommodityId": 7, "Stock": 30, "MaxStock": 80, "PriceFactor": 1.1 },
+      { "CommodityId": 9, "Stock": 40, "MaxStock": 70, "PriceFactor": 0.95 }
+    ],
+    "ConnectedBodies": [11, 13, 15]
+  },
+  {
+    "Id": 13,
+    "Name": "Seraphis Outpost",
+    "SecurityLevel": "Medium",
+    "Position": { "X": 160, "Y": 50, "Z": 90 },
+    "Inventory": [
+      { "CommodityId": 4, "Stock": 20, "MaxStock": 50, "PriceFactor": 1.3 },
+      { "CommodityId": 2, "Stock": 100, "MaxStock": 250, "PriceFactor": 0.7 },
+      { "CommodityId": 5, "Stock": 15, "MaxStock": 60, "PriceFactor": 1.2 },
+      { "CommodityId": 3, "Stock": 80, "MaxStock": 150, "PriceFactor": 0.9 }
+    ],
+    "ConnectedBodies": [11, 12, 14, 15]
+  },
+  {
+    "Id": 14,
+    "Name": "Shubin Mining Facility SM0-4",
+    "SecurityLevel": "Medium",
+    "Position": { "X": 175, "Y": 125, "Z": 40 },
+    "Inventory": [
+      { "CommodityId": 6, "Stock": 300, "MaxStock": 500, "PriceFactor": 0.6 },
+      { "CommodityId": 1, "Stock": 80, "MaxStock": 200, "PriceFactor": 0.9 },
+      { "CommodityId": 8, "Stock": 20, "MaxStock": 60, "PriceFactor": 1.25 }
+    ],
+    "ConnectedBodies": [13, 15, 16]
+  },
+  {
+    "Id": 15,
+    "Name": "Baijini Point",
+    "SecurityLevel": "Medium",
+    "Position": { "X": 200, "Y": 140, "Z": 100 },
+    "Inventory": [
+      { "CommodityId": 10, "Stock": 12, "MaxStock": 30, "PriceFactor": 0.8 },
+      { "CommodityId": 4, "Stock": 25, "MaxStock": 60, "PriceFactor": 1.2 },
+      { "CommodityId": 7, "Stock": 70, "MaxStock": 150, "PriceFactor": 1.0 },
+      { "CommodityId": 9, "Stock": 40, "MaxStock": 100, "PriceFactor": 1.1 }
+    ],
+    "ConnectedBodies": [12, 13, 14, 16]
+  },
+  {
+    "Id": 16,
+    "Name": "Vigil Survey Base",
+    "SecurityLevel": "Low",
+    "Position": { "X": 215, "Y": 160, "Z": 75 },
+    "Inventory": [
+      { "CommodityId": 2, "Stock": 120, "MaxStock": 200, "PriceFactor": 0.9 },
+      { "CommodityId": 3, "Stock": 80, "MaxStock": 150, "PriceFactor": 0.8 },
+      { "CommodityId": 6, "Stock": 40, "MaxStock": 100, "PriceFactor": 1.0 }
+    ],
+    "ConnectedBodies": [14, 15, 17]
+  },
+  {
+    "Id": 17,
+    "Name": "Crusader Station CS-L3",
+    "SecurityLevel": "Low",
+    "Position": { "X": 230, "Y": 180, "Z": 55 },
+    "Inventory": [
+      { "CommodityId": 5, "Stock": 90, "MaxStock": 180, "PriceFactor": 0.85 },
+      { "CommodityId": 9, "Stock": 35, "MaxStock": 80, "PriceFactor": 1.15 },
+      { "CommodityId": 1, "Stock": 25, "MaxStock": 60, "PriceFactor": 1.1 },
+      { "CommodityId": 8, "Stock": 20, "MaxStock": 40, "PriceFactor": 1.3 }
+    ],
+    "ConnectedBodies": [16, 18]
+  },
+  {
+    "Id": 18,
+    "Name": "Celestial Gate",
+    "SecurityLevel": "Low",
+    "Position": { "X": 250, "Y": 200, "Z": 120 },
+    "Inventory": [
+      { "CommodityId": 10, "Stock": 8, "MaxStock": 25, "PriceFactor": 1.6 },
+      { "CommodityId": 7, "Stock": 40, "MaxStock": 120, "PriceFactor": 1.0 },
+      { "CommodityId": 4, "Stock": 15, "MaxStock": 40, "PriceFactor": 1.35 }
+    ],
+    "ConnectedBodies": [17, 19]
+  },
+  {
+    "Id": 19,
+    "Name": "Yela Research Post",
+    "SecurityLevel": "Low",
+    "Position": { "X": 275, "Y": 210, "Z": 60 },
+    "Inventory": [
+      { "CommodityId": 9, "Stock": 25, "MaxStock": 80, "PriceFactor": 0.9 },
+      { "CommodityId": 2, "Stock": 100, "MaxStock": 250, "PriceFactor": 0.8 },
+      { "CommodityId": 3, "Stock": 60, "MaxStock": 150, "PriceFactor": 1.0 },
+      { "CommodityId": 5, "Stock": 40, "MaxStock": 90, "PriceFactor": 1.1 }
+    ],
+    "ConnectedBodies": [18, 20]
+  },
+  {
+    "Id": 20,
+    "Name": "Haven's Rest",
+    "SecurityLevel": "Low",
+    "Position": { "X": 300, "Y": 240, "Z": 95 },
+    "Inventory": [
+      { "CommodityId": 10, "Stock": 20, "MaxStock": 50, "PriceFactor": 0.9 },
+      { "CommodityId": 7, "Stock": 90, "MaxStock": 180, "PriceFactor": 0.95 },
+      { "CommodityId": 8, "Stock": 30, "MaxStock": 80, "PriceFactor": 1.0 },
+      { "CommodityId": 4, "Stock": 40, "MaxStock": 70, "PriceFactor": 1.2 }
+    ],
+    "ConnectedBodies": [19]
   }
 ]

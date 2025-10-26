@@ -19,5 +19,54 @@
     "Acronym": "Foo",
     "BasePrice": 10,
     "Volume": 0.5
+  },
+  {
+    "Id": 4,
+    "Name": "Medical Supplies",
+    "Acronym": "Med",
+    "BasePrice": 75,
+    "Volume": 1
+  },
+  {
+    "Id": 5,
+    "Name": "Quantum Fuel",
+    "Acronym": "QF",
+    "BasePrice": 200,
+    "Volume": 2
+  },
+  {
+    "Id": 6,
+    "Name": "Ore",
+    "Acronym": "Ore",
+    "BasePrice": 60,
+    "Volume": 1.5
+  },
+  {
+    "Id": 7,
+    "Name": "Textiles",
+    "Acronym": "Tex",
+    "BasePrice": 40,
+    "Volume": 1
+  },
+  {
+    "Id": 8,
+    "Name": "Machinery",
+    "Acronym": "Mac",
+    "BasePrice": 150,
+    "Volume": 2
+  },
+  {
+    "Id": 9,
+    "Name": "Electronics",
+    "Acronym": "Ele",
+    "BasePrice": 110,
+    "Volume": 1.5
+  },
+  {
+    "Id": 10,
+    "Name": "Luxury Goods",
+    "Acronym": "Lux",
+    "BasePrice": 300,
+    "Volume": 0.5
   }
 ]

@@ -9,7 +9,7 @@ namespace Between_Stars.Classes
     public class Mission
     {
         public string MissionId { get; set; }
-        public int PlayerId { get; set; }
+        public int PlayerId { get; set; } // ====== Stryk PlayerID ifrån Mission. Kör på MissionID på player istället. 
         public string Title { get; set; }
         public string Description { get; set; }
         public string Commodity { get; set; }
