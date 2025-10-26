@@ -14,11 +14,13 @@ namespace Between_Stars
             string commodityFilePath = Path.Combine("Data", "commodities.json");
             string celestialBodyFilePath = Path.Combine("Data", "celestialBodies.json");
             string playerFilePath = Path.Combine("Data", "players.json");
+            string missionFilePath = Path.Combine("Data", "missions.json");
 
             List<Ship> ships = JsonHelper.LoadShips(shipFilePath);
             List<Commodity> commodities = JsonHelper.LoadCommodities(commodityFilePath);
             List<CelestialBody> celestialBodies = JsonHelper.LoadCelestialBodies(celestialBodyFilePath);
             List<Player> players = JsonHelper.LoadPlayers();
+            List<Mission> missions = JsonHelper.LoadMissions(missionFilePath);
 
             //LogInUser();
 
@@ -64,6 +66,7 @@ namespace Between_Stars
                 CelestialBodies = celestialBodies,
                 Commodities = commodities,
                 Ships = ships,
+                Missions = missions
                 // ...lägg till det du behöver
             };
             //sessionData.MarketHandler = new MarketHandler(sessionData);

@@ -26,5 +26,6 @@ namespace Between_Stars.Classes
 
         public List<CargoItem> Cargo { get; set; } = new();
         public int CurrentLocationId { get; set; }
+        public List<string> MissionId { get; set; } = new();
     }
 }

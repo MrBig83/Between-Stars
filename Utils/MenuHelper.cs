@@ -76,9 +76,9 @@ namespace Between_Stars.Utils
                 Console.WriteLine("1. Kontrollera nyheter");
                 Console.WriteLine("2. Visa Skeppstatus");
                 Console.WriteLine("3. Besök handelskammaren");
-                Console.WriteLine("4. Handla varor");
-                Console.WriteLine("5. Sälja varor");
-                Console.WriteLine("6. Besök pubben");
+                Console.WriteLine("4. Uppdragslog");
+                Console.WriteLine("5. Slutför uppdrag");
+                Console.WriteLine("6. Leta efter uppdrag");
                 Console.WriteLine("7. Köp marknadsanalys");
                 Console.WriteLine("8. Lämna stationen");
                 Console.WriteLine("9. Avsluta");
@@ -100,8 +100,6 @@ namespace Between_Stars.Utils
                             cargoVolume = cargoVolume + item.Amount * item.Volume;
                         }
 
-
-
                         Console.WriteLine($"Ditt skepp: {session.Ships.FirstOrDefault(s => s.ShipId == session.LoggedInPlayer.ShipId).Name}\n" +
                             $"Nuvarande bränslenivå: {session.LoggedInPlayer.CurrentFuel}/{session.LoggedInPlayer.FuelCapacity}\n" +
                             $"Nuvarande lastmängd: {cargoVolume}/{session.LoggedInPlayer.CargoCapacity}\n");
@@ -119,12 +117,14 @@ namespace Between_Stars.Utils
 
                         break;
                     case "4":
-                        //Console.Clear();
+                        Console.Clear();
+                        MissionHandler.ShowMissions(session);
                         //MarketHandler.BuyCommodity(session);
 
                         break;
                     case "5":
-                        //Console.Clear();
+                        Console.Clear();
+                        MissionHandler.CompleteMission(session);
                         //Console.WriteLine($"Marknaden på {currentStation.Name}:\n");
                         //MarketHandler.SellCommodity(session);
 
@@ -132,7 +132,7 @@ namespace Between_Stars.Utils
                     case "6":
                         Console.Clear();
                         Console.WriteLine($"Du besöker pubben...\n");
-                        await APIHandler.VisaMeny();
+                        await APIHandler.VisaMeny(session);
                         break;
                     case "7":
                         Console.Clear();

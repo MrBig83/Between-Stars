@@ -39,6 +39,11 @@ namespace Between_Stars.Utils
                 string json = File.ReadAllText(celestialBodyFilePath);
                 return JsonSerializer.Deserialize<List<CelestialBody>>(json);
             }
+            public static List<Mission> LoadMissions(string MissionFilePath)
+            {
+                string json = File.ReadAllText(MissionFilePath);
+                return JsonSerializer.Deserialize<List<Mission>>(json);
+            }
 
         public static void SavePlayers(List<Player> players)
         {
@@ -62,6 +67,18 @@ namespace Between_Stars.Utils
 
             string json = JsonSerializer.Serialize(celestialBodies, options); // Serialisera hela listan!
             File.WriteAllText(celestialBodyFilePath, json);
+        }
+
+        public static void SaveMissions(List<Mission> missions)
+        {
+            string missionFilePath = Path.Combine("Data", "missions.json");
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            string json = JsonSerializer.Serialize(missions, options); // Serialisera hela listan!
+            File.WriteAllText(missionFilePath, json);
         }
     }
 }

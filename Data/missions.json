@@ -1,0 +1,15 @@
+﻿[
+  {
+    "MissionId": "M0001",
+    "PlayerId": 1,
+    "Title": "Transport av sällsynta mineral",
+    "Description": "Ditt uppdrag är att säkert transportera en värdefull last av Titanium från New Babbage till Everus Harbor. Var noggrann och snabb för att få den bästa belöningen!",
+    "Commodity": "Titanium",
+    "Amount": 3,
+    "From_station": "New Babbage",
+    "To_station": "Everus Harbor",
+    "Reward_cr": 1800,
+    "Reward_reputation": 4,
+    "Status": "Active"
+  }
+]

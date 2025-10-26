@@ -8,6 +8,8 @@ namespace Between_Stars.Classes
 {
     public class Mission
     {
+        public string MissionId { get; set; }
+        public int PlayerId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Commodity { get; set; }
@@ -16,11 +18,14 @@ namespace Between_Stars.Classes
         public string To_station { get; set; }
         public int Reward_cr { get; set; }
         public int Reward_reputation { get; set; }
+        public string Status { get; set; }
 
         public Mission() { }
 
-        public Mission(string title, string description, string commodity, int amount, string from_station, string to_station, int reward_cr, int reward_reputation)
+        public Mission(string missionId, int playerId, string title, string description, string commodity, int amount, string from_station, string to_station, int reward_cr, int reward_reputation, string status)
         {
+            MissionId = missionId;
+            PlayerId = playerId;
             Title = title;
             Description = description;
             Commodity = commodity;
@@ -29,6 +34,7 @@ namespace Between_Stars.Classes
             To_station = to_station;
             Reward_cr = reward_cr;
             Reward_reputation = reward_reputation;
+            Status = status;
         }
     }
 }

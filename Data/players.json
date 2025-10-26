@@ -20,8 +20,9 @@
         "Volume": 1
       }
     ],
-      "CurrentLocationId"
-      :
-      1
+    "CurrentLocationId": 1,
+    "MissionId": [
+      "M0001"
+    ]
   }
 ]
