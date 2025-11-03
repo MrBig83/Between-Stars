@@ -53,7 +53,7 @@ namespace Between_Stars.Utils
                 WriteIndented = true
             };
 
-            string json = JsonSerializer.Serialize(players, options); // Serialisera hela listan!
+            string json = JsonSerializer.Serialize(players, options); 
             File.WriteAllText(playerFilePath, json);
         }
 
@@ -65,7 +65,7 @@ namespace Between_Stars.Utils
                 WriteIndented = true
             };
 
-            string json = JsonSerializer.Serialize(celestialBodies, options); // Serialisera hela listan!
+            string json = JsonSerializer.Serialize(celestialBodies, options);
             File.WriteAllText(celestialBodyFilePath, json);
         }
 
@@ -77,7 +77,7 @@ namespace Between_Stars.Utils
                 WriteIndented = true
             };
 
-            string json = JsonSerializer.Serialize(missions, options); // Serialisera hela listan!
+            string json = JsonSerializer.Serialize(missions, options);
             File.WriteAllText(missionFilePath, json);
         }
     }
